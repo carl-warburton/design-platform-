@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var schemaProfile = new Schema({
-  imagePath: {type: String, required: true},
+  imageProf: {type: String, required: true},
   name: {type: String, required: true},
   hometown: {type: String, required: true},
   instagram: {type: String, required: true},

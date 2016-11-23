@@ -5,28 +5,28 @@ mongoose.connect('localhost:27017/shopping');
 
 var profiles = [
   new Profile({
-      imagePath:'../public/images/profilePlaceholder.jpg',
+      imageProf:'https://yt3.ggpht.com/-zfUc8DPpBWs/AAAAAAAAAAI/AAAAAAAAAAA/DyRp7GoSxbo/s900-c-k-no-mo-rj-c0xffffff/photo.jpg',
       name:'Carl',
       hometown: 'Mollymook',
       instagram: 'https://www.instagram.com/trump/',
       twitter: 'https://twitter.com/CarlWarbs'
     }),
     new Profile({
-        imagePath:'../public/images/profilePlaceholder.jpg',
+        imageProf:'https://yt3.ggpht.com/-zfUc8DPpBWs/AAAAAAAAAAI/AAAAAAAAAAA/DyRp7GoSxbo/s900-c-k-no-mo-rj-c0xffffff/photo.jpg',
         name:'Robert',
         hometown: 'Sydney',
         instagram: 'https://www.instagram.com/stabmag/',
         twitter: 'https://twitter.com/CarlWarbs'
       }),
       new Profile({
-          imagePath:'../public/images/profilePlaceholder.jpg',
+          imageProf:'https://yt3.ggpht.com/-zfUc8DPpBWs/AAAAAAAAAAI/AAAAAAAAAAA/DyRp7GoSxbo/s900-c-k-no-mo-rj-c0xffffff/photo.jpg',
           name:'Jack',
           hometown: 'Milton',
           instagram: 'https://www.instagram.com/kanye/',
           twitter: 'https://twitter.com/CarlWarbs'
         }),
         new Profile({
-            imagePath:'../public/images/profilePlaceholder.jpg',
+            imageProf:'https://yt3.ggpht.com/-zfUc8DPpBWs/AAAAAAAAAAI/AAAAAAAAAAA/DyRp7GoSxbo/s900-c-k-no-mo-rj-c0xffffff/photo.jpg',
             name:'Charles',
             hometown: 'Arley',
             instagram: 'https://www.instagram.com/carlos/',
