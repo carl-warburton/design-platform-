@@ -19,6 +19,16 @@ passport.use('local.signup', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, function(req, email, password, done) {
+    req.checkBody('email', 'Invalid email').notEmpty().isEmail();
+    req.checkBody('password', 'Invalid password').notEmpty().isLength({min:4});
+    var errors = req.validationErrors();
+    if (errors) {
+      var messages = [];
+      errors.forEach(function(error) {
+        messages.push(error.msg);
+      });
+      return done(null, false, req.flash('error', messages));
+    }
     User.findOne({'email':email}, function(err, user) {
       if (err) {
         return done(err);
@@ -38,15 +48,32 @@ passport.use('local.signup', new LocalStrategy({
     });
 }));
 
-//
-// passport.use('local.signup', new FacebookStrategy({
-//     clientID: '1012492952230239',
-//     clientSecret: '2bd07798f45938e32758022ff08ae978',
-//     callbackURL: "http://localhost:3000/"
-//   },
-//   function(accessToken, refreshToken, profile, cb) {
-//     User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-//       return cb(err, user);
-//     });
-//   }
-// ));
+passport.use('local.signin', new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+}, function(req, email, password, done) {
+  req.checkBody('email', 'Invalid email').notEmpty().isEmail();
+  req.checkBody('password', 'Invalid password').notEmpty();
+  var errors = req.validationErrors();
+  if (errors) {
+    var messages = [];
+    errors.forEach(function(error) {
+      messages.push(error.msg);
+    });
+    return done(null, false, req.flash('error', messages));
+  }
+
+  User.findOne({'email':email}, function(err, user) {
+    if (err) {
+      return done(err);
+    }
+    if (!user) {
+      return done(null, false, {message: 'No user found'});
+    }
+    if (!user.validPassword(password)) {
+      return done(null, false, {message: 'Incorrect Password'});
+    }
+    return done(null, user);
+  });
+}));
